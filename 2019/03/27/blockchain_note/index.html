@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="BlockChain_note"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@ShaneTian6"/>
+
+
+
+  	<meta property="og:title" content="BlockChain_note &middot; I am thinking and living ..." />
+  	<meta property="og:site_name" content="I am thinking and living ..." />
+  	<meta property="og:url" content="https://franklin-zf.github.io/MyBlog/2019/03/27/blockchain_note/" />
+
+    
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2019-03-27T09:14:37&#43;08:00" />
+
+    
+    <meta property="article:tag" content="BlockChain" />
+    
+    
+
+    <title>BlockChain_note &middot; I am thinking and living ...</title>
+
+    
+    <meta name="description" content="BTC 数据结构 哈希指针（内存地址，数据hash） 区别：用哈希指针代替了普通指针
+整个区块的所有内容都会被hash，作为下一个区块的前hash值。
+由于merkle tree的存在，所以只需要hash(block header)
+graph LR id[coin base -&amp;gt;A10] --&amp;gt; id1[" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://franklin-zf.github.io/MyBlog/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://franklin-zf.github.io/MyBlog/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://franklin-zf.github.io/MyBlog/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://franklin-zf.github.io/MyBlog/css/nav.css" />
+
+    
+
+    
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/atom-one-light.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        
+        <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+      
+          <link href="https://franklin-zf.github.io/MyBlog/index.xml" rel="alternate" type="application/rss+xml" title="I am thinking and living ..." />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.54.0" />
+
+    <link rel="canonical" href="https://franklin-zf.github.io/MyBlog/2019/03/27/blockchain_note/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": 
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "url": ,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": Every man dies, not every man really lives.
+        
+    },
+    "headline": BlockChain_note,
+    "name": BlockChain_note,
+    "wordCount": 1029,
+    "timeRequired": "PT5M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": https://franklin-zf.github.io/MyBlog/2019/03/27/blockchain_note/,
+    "datePublished": 2019-03-27T09:14Z,
+    "dateModified": 2019-03-27T09:14Z,
+    
+    "keywords": BlockChain,
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": https://franklin-zf.github.io/MyBlog/2019/03/27/blockchain_note/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://franklin-zf.github.io/MyBlog/">Home</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="tags/blockchain">BlockChain</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://franklin-zf.github.io/MyBlog/tags/machine-learning">Machine Learning</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://franklin-zf.github.io/MyBlog/tags/others">Others</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://franklin-zf.github.io/MyBlog/about">About</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="https://franklin-zf.github.io/MyBlog/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">BlockChain_note</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2019-03-27T09:14:37&#43;08:00">
+            Mar 27, 2019
+          </time>
+        
+         
+          <span class="post-tag small"><a href="https://franklin-zf.github.io/MyBlog//tags/blockchain/">#BlockChain</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<h1 id="btc">BTC</h1>
+
+<h3 id="数据结构">数据结构</h3>
+
+<h4 id="哈希指针-内存地址-数据hash">哈希指针（内存地址，数据hash）</h4>
+
+<p>区别：用哈希指针代替了普通指针</p>
+
+<p>整个区块的所有内容都会被hash，作为下一个区块的前hash值。</p>
+
+<p>由于merkle tree的存在，所以只需要hash(block header)</p>
+
+<pre><code class="language-mermaid">graph LR
+id[coin base -&gt;A10] --&gt; id1[A -&gt; B5]
+
+</code></pre>
+
+<p>FLP impossibility result:</p>
+
+<p>在异步的系统中，网络传输延迟没有上限。哪怕系统中有一个成员是faulty的，就不能达成共识。</p>
+
+<p>CAP Theorem</p>
+
+<p>consistency，avalibility，partition tolerance，三个性质只能满足两个。</p>
+
+<p>Paxos</p>
+
+<p>满足Consistency，Avalibility。</p>
+
+<p>Coinbase transaction: block reward;50 BTC;After 21w blocks, 25BTC;After 21w blocks,12.5BTC</p>
+
+<p>BTC共识要取得的共识是什么？账本的内容！ Hash rate投票权重！</p>
+
+<p><font color="red">digital gold —&gt;BTC</font></p>
+
+<h4 id="utxo-unspent-transaction-output">UTXO(unspent transaction output)</h4>
+
+<p>维护的是，账本中未被花费的输出集合。（交易的hash值，交易中的第几输出）。</p>
+
+<pre><code class="language-mermaid">graph LR
+id[A] --&gt;id1[B 5BTC] 
+id[A] --&gt;id2[C 3BTC]
+</code></pre>
+
+<p>B化掉了5BTC,在UTXO中就不会存有B 5BTC的地址，hash pointer。</p>
+
+<p>Total inputs == Total outputs + 交易费</p>
+
+<p>Transaction-based ledger</p>
+
+<p>Account-based ledger(ethereum)</p>
+
+<p>由于现在BTC价格过高，导致挖矿难度激增，仅有的4Bytes的nonce可能不够矿工找到目标hash。那么此时，我们那还可以通过修改block header中的merkle root值来调整H(block header)。</p>
+
+<p><font color="red">原因：</font>因为在挖矿出块时，会尝试coinbase交易，只有output(作为block reward)，在这个域就可以随意的添加数据。</p>
+
+<p>概率分布服从指数分布：memoryless，progress free（无记忆，过去做的工作没有用，对于最终的结果产生概率没有影响。）挖矿公平性的保证。</p>
+
+<p>防范forking attack 的方法就是多等几个区块！多等几个确认。BTC需要等six confirmation（1h）。(zero confirmation,one confirmation)</p>
+
+<p>irrevocable ledger(不可篡改)</p>
+
+<p>没有规定，获得记账权的节点一定要把哪些交易写入区块中。但是，比特币中规定，每个区块的大小有限制，最对不能超过1M。</p>
+
+<h4 id="selfish-mining">Selfish Mining</h4>
+
+<ul>
+<li><p>将挖到的区块，先藏着（比如存储7个，等到6个最长链的确认后，再发布，取代最长链），进行分叉攻击。</p></li>
+
+<li><p>不发布的话，可以自己先挖接下来的区块。但是有风险，有可能在挖下一个区块的时候，别人先发布了这个区块。</p></li>
+</ul>
+
+<h4 id="btc网络">BTC网络</h4>
+
+<p>P2P overlay network</p>
+
+<p>节点间TCP，易于突破防火墙，没有super nodes。</p>
+
+<p>设计原则：简单、鲁棒（simple，robust ,but not efficient）</p>
+
+<p>消息传播：flooding。邻居节点选择的是随机的。并对该消息进行记录，一旦再接受，不再进行转发。</p>
+
+<p>带宽限制，1M传播到网上可能需要几十秒</p>
+
+<p>best effort：该转发的不转发，不该转发的进行转发。一个交易发布到比特币网络上，节点不一定能够接收到，不同节点的接收顺序可能也不一样。网络存在延迟。</p>
+
+<h4 id="挖矿难度">挖矿难度</h4>
+
+<p>$difficulty = \frac{difficulty_1_target}{target}$</p>
+
+<p>Difficulty_1_target:挖矿难度等于1的时候的target。</p>
+
+<p>出块时间太短：可能会出现10分叉，分叉就将成为常态。</p>
+
+<p>以太坊出块时间降低到15s，设置了新的ghost共识协议。出现orphan block，不能简单的丢弃，还需要给予一定奖励(Uncle reward)。同样需要保证出块时间保持稳定。</p>
+
+<p>BTC，每2016个区块，约14天</p>
+
+<p>$target = target * \frac{actual \ time}{expected  \ time}$  $next _ difficulty = previous _ difficulty * \frac{(2 \ weeks)} { (time \ to \ mine \ last \ 2016 \ blocks)}​$</p>
+
+<p>Expected time = 2016*10</p>
+
+<p>mining puzzle</p>
+
+<p>Merge mining(使用现有的mining puzzle来吸引用户来挖矿)</p>
+
+<p>alternative mining puzzle：抗asic矿机，使得普通cpu也能参与挖矿。</p>
+
+<p>矿池：矿主分配矿工任务，分配nonce，coinbase parameter，首款收款地址是矿主的。矿工挖 almost valid block 也叫share，矿工根据share来进行分配。</p>
+
+<p>Boycott 攻击：掌握大部分算力，公开抵制某个账户的相关交易，一有节点发布，就发布分叉攻击，导致其他节点将白白浪费算力，其他节点也将不会再记录某个账户的相关交易。</p>
+
+<pre><code class="language-mermaid">graph LR
+pool-manager --&gt; miner-1
+pool-manager --&gt; miner-n
+</code></pre>
+
+<p>on demand computing(mining),平时不用维护，需要的时候可以召集！</p>
+
+<h4 id="btc-scripting-language">BTC scripting language</h4>
+
+<p>Locktime:设置交易的生效时间，0表示立即生效。</p>
+
+<pre><code class="language-json">&quot;vin&quot;:[{
+  &quot;txid&quot;:&quot;c0...7b&quot;,
+  &quot;vout&quot;:0,   
+  &quot;scriptSig&quot;:{
+    &quot;asm&quot;:&quot;3045...0018&quot;,
+    &quot;hex&quot;:&quot;4830...0018&quot;
+  },
+}],
+</code></pre>
+
+<p>Vin 是result的输入，其中txid和vout，表示交易的来源，txid为地址，vout表示第几个交易。scriptSig,签名。</p>
+
+<p><img src="../../static/img/outputScript.png" alt="交易的输出" /></p>
+
+<p>reqSigs: 表示这个输出需要多少个签名。</p>
+
+<p><img src="../../static/img/verify.png" alt="" /></p>
+
+<p>输出和输入脚本拼接验证。现在是分别执行，结果非零值，true。合法交易！</p>
+
+<p>redeemScript(赎回脚本),支持多个签名。CHECKMULTISIG。</p>
+
+<p><img src="../../static/img/p2sh.png" alt="" /></p>
+
+<h4 id="proof-of-burn">Proof of Burn</h4>
+
+<p>销毁比特币的脚本，在output script中使用return语句输出会报错。</p>
+
+<p>1:小币种要求销毁一定的比特币，才能获取该币种。altcoin(Alternative Coin),证明付出了一定的代价。</p>
+
+<p>2:添加需要永久保存的内容。放入return 后（return后的语句都不会执行。）</p>
+
+<p>op_return 写在当前交易的输入脚本中，判断当前交易合法性，并不需要用到改输入脚本。</p>
+
+<h4 id="fork">fork</h4>
+
+<p>state fork</p>
+
+<p>Protocol fork: (协议修改). hard fork; soft fork</p>
+
+<h5 id="hard-fork">hard fork</h5>
+
+<p>特性的不认同。block size limit.新节点会接受旧，但是旧不接受新的。</p>
+
+<p>分叉是永久性的。所有节点都要更新软件，才不会出现永久性分叉</p>
+
+<h5 id="soft-fork">soft fork</h5>
+
+<p>分叉是临时性的。半数以上的节点更新了软件，就不会出现永久性的分叉。</p>
+
+<p>1M中理论上4k个交易，实际上远远不够。</p>
+
+<h4 id="bitcoin-and-anonymity">Bitcoin and anonymity</h4>
+
+<p>匿名性与化名性。pseudonymity。</p>
+
+<p>法币是完全匿名的。</p>
+
+<p>银行以前是化名的，账本是不公开的。</p>
+
+<p>破坏比特币的匿名性：与实体世界产生交易的时候，比如转账。</p>
+
+<p>地址之间是可以被关联的，钱包产生的零钱地址是可以被分析出来的。</p>
+
+<p>coin mixing(信誉度是个问题)</p>
+
+<h4 id="零知识证明-zero-knowledge-proof">零知识证明(zero-knowledge proof)</h4>
+
+<p>证明者向验证者证明一个陈述是正确的，而无需透露除该陈述是正确的外的任何信息。</p>
+
+<h5 id="同态隐藏">同态隐藏</h5>
+
+<ul>
+<li>如果$x,y$不同，那么它们的加密函数值$E(x)$和$E(y)$也不同。&ndash;不会出现碰撞</li>
+<li>给定$E(x)$的值，很难反推出$x$的值。&ndash;不可逆</li>
+<li>给定$E(x)$和$E(y)$的值，我们可以计算出某些关于$x,y​$的加密函数值。
+
+<ul>
+<li>同态加法：通过$E(x)​$和$E(y)​$计算出$E(x+y)​$的值</li>
+<li>同态乘法：通过$E(x)$和$E(y)$计算出$E(xy)$的值</li>
+<li>扩展到多项式</li>
+</ul></li>
+<li>盲签，零币和零钞。增强匿名性。无法追溯。</li>
+</ul>
+
+<h4 id="思考">思考</h4>
+
+<p>哈希指针如何在网络中传输？实际系统中用的是只有hash，没有指针。</p>
+
+<p>在全节点中，<key, value>(level DB)进行保存，key&ndash;&gt;hash值。</p>
+
+<p>以多重签名来保正持有多重账户的安全性。</p>
+
+<p>分布式共识：</p>
+
+<p>异步环境：网络延迟无上限。</p>
+
+<p>比特币的稀缺性：稀缺不适合做货币。</p>
+
+<p>货币需要具有一定的通胀性。</p>
+
+<p>量子计算：量子加密。加密是要保证数据的完整性，hash加密则会损失数据的完整性，量子计算也不能还原。要不然就是超级的压缩算法。</p>
+
+<h1 id="eth">ETH</h1>
+
+<p>Decentralized contract&ndash;分布式合约</p>
+
+<p>添加nonce来记录交易次数，避免重放攻击。</p>
+
+<p>exernally owned account</p>
+
+<ul>
+<li>balance</li>
+<li>nonce</li>
+</ul>
+
+<p>Smart contract account</p>
+
+<ul>
+<li>不能主动发起一个交易</li>
+<li>code</li>
+<li>nonce</li>
+<li>storage</li>
+</ul>
+
+<p>financial derivative 金融衍生品</p>
+
+<p><font color="red">sorted merkle tree</font></p>
+
+<p>在比特币中，只有有记账权力的节点发布的区块才有效。</p>
+
+<p>trie的数据结构。retrieval（信息检索）</p>
+
+<p><img src="../../static/img/trie.png" alt="" /></p>
+
+<p>还可以做路径压缩。键值分布比较稀疏的时候，应用压缩比较好。 MPT(merkle patricia tree,把普通指针换成哈希指针)。</p>
+
+<p>Patricia tree(trie)压缩前缀树。</p>
+
+<p><img src="../../static/img/Ptrie.png" alt="" /></p>
+
+<p>重新压入一个词，原有的路径可能需要扩展开来。</p>
+
+<p>Disintermediaries (去中间商)，让价值提供者和消费者直接交易。</p>
+
+<p>以太坊中使用的是modified MPT。</p>
+
+<p><img src="../../static/img/MMPT.png" alt="modified MPT" /></p>
+
+<p>区块结构：<img src="../../static/img/blockstructure.png" alt="" /></p>
+
+<p>以太坊的智能合约是图灵完备的，要支持回滚，就需要保存历史状态。</p>
+
+<p>block header structure</p>
+
+<p><img src="../../static/img/header.png" alt="header" /></p>
+
+<p>RLP(recursive length prefix)递归长度前缀编码&ndash;极简主义,只支持 nested array of bytes（字节数组）。<key, value>。</p>
+
+<p>protocol buffer—&gt;protobuf</p>
+
+<h4 id="bloom-filter">bloom filter</h4>
+
+<p>支持比较高效的查找某个元素是否在集合里。使用hash函数来确定digest地址。false positive，不在一定不在，在的不一定在。但是不支持删除操作。</p>
+
+<p>交易驱动的状态机(transaction-driven state machine),状态转移必须是确定性的。</p>
+
+<h4 id="ghost">GHOST</h4>
+
+<p>出块速度十几秒，分叉成为常态。应用在应用层的共识协议。底层是p2p网络，可能传输速度没有共识快。</p>
+
+<p>mining centralization —&gt;&gt; centralization bias</p>
+
+<p>一个区块最多可以包含两个uncle block， 每多一个就增加$\frac{1}{23}*区块奖励$的</p>
+
+<p>额外奖励。uncle block 可获得$\frac{7}{8}*区块奖励$的区块奖励，uncle reward。</p>
+
+<p>uncle block 和当前区块必须在7个区块长度内，否则就不算。方便其他节点进行验证uncle block。</p>
+
+<p>gas fee只有主链上的区块才可以获得，但是占比很小，影响不大。</p>
+
+<p>只有分叉后的第一个区块才能获取uncle reward。</p>
+
+<h4 id="挖矿算法">挖矿算法</h4>
+
+<p>bug bounty（赏金）；bounty hunter（赏金猎人）。</p>
+
+<p>short cap（捷径）。</p>
+
+<p>one cpu, one vote.</p>
+
+<p>ASIC resistance: memory hard mining puzzle.</p>
+
+<p>Scrypt: memory hard,但是验证也是memory hard。轻节点很难验证。最后，并没有解决ASIC resistance。但是解决了冷启动问题。</p>
+
+<p>挖矿的算法要求：difficult to solve, but easy to verify.</p>
+
+<p>##### DAG</p>
+
+<p>Ethash伪代码</p>
+
+<hr />
+
+<pre><code class="language-python">def mkcache(cache_size, seed):
+  o = [hash(seed)]
+  for i in range(1, cache_size):
+    o.append(hash(o[-1]))
+   return o
+</code></pre>
+
+<p>后面每一个元素都是前一个元素的hash</p>
+
+<p>通过seed 来计算cache 的伪代码。略去了原来代码中对cache元素进一步的处理，只展示原理，即cache中元素按序生成，每个元素产生时与上一个元素相关。</p>
+
+<p>每隔30000个块会重新产生seed(对原来的seed求哈希值)，并且利用新的seed生成新的cache。</p>
+
+<p>cache的初始大小为16M，每隔30000个块，重新生成时增大初始大小的1/128—128K。</p>
+
+<hr />
+
+<pre><code class="language-python">def calc_dataset_item(cache, i):
+  cache_size = cache.size
+  mix = hash(cache[i % cache_size] ^ i)
+  for j in range(256):
+    cache_index = get_int_from_item(mix)
+    mix = make_item(mix, cache[cache_index % cache_size])
+    return hash(mix)
+</code></pre>
+
+<p>这是通过cache来生成dataset中第i个元素的伪代码。</p>
+
+<p>这个dataset叫作DAG，初始大小是1G，也是每隔30000个块更新。同时增大初始大小的1/128—8M。</p>
+
+<p>伪代码省略大部分细节，展示原理：</p>
+
+<p>先通过cache中的第i%cache_size个元素生成初始的mix，因为两个不同的dadaset元素可能对应同一个cache中的元素，为了保证每个初始的mix都不同，注意到i也参与了哈希计算。</p>
+
+<p>随后循环256次，每次通过get_int_from_item来根据当前的mix值求的下一个要访问的cache元素的下标，用这个cache元素和mix通过make_item求得新的mix值。注意到由于初始的mix值都不同，所以访问cache的序列也都是不同的。</p>
+
+<p>最终返回mix的哈希值，得到第i个dataset中的元素。</p>
+
+<p>多次调用这个函数，就可以得到完整的dataset。</p>
+
+<hr />
+
+<pre><code class="language-python">def calc_dataset(full_size, cache):
+  return [calc_dataset_item(cache, i) for i in range(full_size)]
+</code></pre>
+
+<p>这个函数通过不断的调用前边的calc_dataset_item函数来依次生成dataset中全部full_size个元素。</p>
+
+<hr />
+
+<pre><code class="language-python">def hashimoto_full(header, nonce, full_size, dataset):
+  mix = hash(header, nonce)
+  for i in range(64):
+    dataset_index = get_int_from_item(mix) % full_size
+    mix = make_item(mix, dataset[dataset_index])
+    mix = make_item(mix, dataset[dataset_index + 1])
+    return hash(mix)
+  
+def hashimoto_light(headerm nonce, full_size, cache):
+  mix = hash(header, nonce)
+  for i in range(64):
+    dataset_index = get_int_from_item(mix) % full_size
+    mix = make_item(mix, calc_dataset_item(cache, dataset_index))
+    mix = make_item(mix, calc_dataset_tem(cache, dataset_index + 1))
+    return hash(mix)
+</code></pre>
+
+<p>这个函数展示了ethash算法的puzzle：通过区块头、nonce以及DAG求出一个与target比较的值，矿工和青节点使用的实现方法是不一样的。</p>
+
+<p>先通过header和nonce求出一个初始的mix，然后进入64次循环，根据当前的mix值求出要访问的dataset的元素的下标，根据这个下标放嫩dataset中两个连续的值（值相关吗？）</p>
+
+<p>最后返回mix的哈希值，用来和target比较。</p>
+
+<p>注意到轻节点是临时计算出用到的dataset的元素，而矿工是直接访存，也就是你许在内存里存着这个1G的dataset。</p>
+
+<hr />
+
+<pre><code class="language-python">def mine(full_size, dataset, header, target):
+  nonce = random.randint(0, 2**64)
+  while hashimoto_full(header, nonce, full_size, dataset) &gt; target:
+    nonce = (nonce + 1) % 2**64
+   return nonce
+</code></pre>
+
+<p>矿工需要验证非常多的nonce，如果每次从16M的cache中重新生成的话，效率就太低了，而且有大量的重复计算：随机选取的dataset中的元素有很多是重复的，可能是之前尝试别的nonce时用过的。所以，矿工采取以空间换时间的策略，把整个dataset保存下来。</p>
+
+<p>轻节点由于只验证一个nonce，验证的时候就直接生成要用到的dataset中的元素就可以了。</p>
+
+<p>pre-mining</p>
+
+<p>Pre-sale</p>
+
+<h4 id="区块难度调整">区块难度调整</h4>
+
+<p>#####区块难度D(H)</p>
+
+<p>$$D(H)=\begin{cases}D_0, &amp; if  \ H_i = 0 \max(D<em>0,P(H)</em>{H_d} + x \times\zeta_2) + \epsilon &amp; otherwise \end{cases} \ where:\D_0 = 131072​$$</p>
+
+<p>1、D(H)是本区块的难度，有基础部分$P(H)_{H_d}+x\times \zeta_2$和难度炸弹部分$\epsilon$相加得到。</p>
+
+<p>2、$P(H)_{H_d}​$为父区块难度，每个区块的难度都是在父区块难度的基础上进行调整。</p>
+
+<p>3、$x\times \zeta_2$用于自适应调节出块难度，维持稳定的出块速度。</p>
+
+<p>4、基础部分有下界，为最小值$D_0=131072​$</p>
+
+<p>5、$\epsilon \  $就是难度炸弹</p>
+
+<p>#####自适应难度调整$x\times \zeta_2$</p>
+
+<p>$$\begin{cases}x \equiv \lfloor\frac{P(H)_{H_d}}{2048}\rfloor  &amp;  (43)\ \zeta_2 \equiv max(y - \lfloor\frac{H<em>s - P(H)</em>{H_s}}{9}\rfloor, -99) &amp; (44) \end{cases}$$</p>
+
+<p>1、$x​$ 是调整的单位，$\zeta_2​$ 为调整的系数。</p>
+
+<p>2、y和父区块的uncle数有关。如果父区块中包括了uncle，则y为2，否则y为1.</p>
+
+<ul>
+<li>父块包含uncle是难度会大一个单位，因为包含uncle时新发行的货币量大，需要适当提高难度以保持货币发行量稳定。</li>
+</ul>
+
+<p>3、难度降低的上界设置为-99，只要是应对被黑客攻击或其他目前想不到的黑天鹅事件。所以一次最低下调难度为99/2048.</p>
+
+<p>$H<em>s$ 是本区块的时间戳;$P(H)</em>{H_s}$ 是父区块的时间戳，均以秒为单位，并规定$H<em>s &gt; P(H)</em>{H_s}$。</p>
+
+<ul>
+<li>该部分是稳定出块速度的最重要部分；出块时间过短则调大难度，出块时间过长则调小难度。</li>
+</ul>
+
+<p>以父区块不带uncle(y=1)示例</p>
+
+<ul>
+<li>出块时间在[1,8]之间，出块时间过短，难度调大一个单位</li>
+<li>出块时间在[9-17]之间，出块时间可以接受，难度保持不变</li>
+<li>出块时间在[18,26]之间，出块时间过长，难度调小一个单位</li>
+<li>$\dots$</li>
+</ul>
+
+<h5 id="难度炸弹-epsilon">难度炸弹 $\epsilon$</h5>
+
+<p>$$\epsilon \equiv \lfloor2^{\lfloor H_i&rsquo; \div100000 \rfloor - 2}\rfloor\ H_i&rsquo; \equiv max(H_i - 3000000, \ 0)$$</p>
+
+<p>为什么设置难度炸弹？</p>
+
+<ul>
+<li>要降低迁移到PoS协议时发生fork的分险：到时挖矿难度非常大，所以矿工有意愿迁移到PoS协议。</li>
+</ul>
+
+<p>参数说明：</p>
+
+<ul>
+<li>$\epsilon$ 是2的指数函数，每十万个块扩大一倍，后期增长非常快，这就是难度炸弹的由来。</li>
+<li>$H_i&rsquo;$ 称为fake block nnumber，由真正的block number $H_i&rsquo;$ 减少三百万得倒。这样做的原因是低估了PoS协议的开发难度，需要延时大概一年半的时间内(EIP100) （EIP — Ethereum Improvement Proposal）。</li>
+<li>以太坊发展的四个阶段</li>
+</ul>
+
+<pre><code class="language-mermaid">graph TB
+Frontier --&gt; id1[Homestead]
+id1[homestead] --&gt; id2[Metropolis]
+id2[Metropolis] --&gt; id3[Byzanntium]
+id2[Metropolis] --&gt; id4[Constantinople]
+id3[Byzanntium] --&gt; Serenity
+id4[Constantinople] --&gt; Serenity
+</code></pre>
+
+<p>说明：</p>
+
+<ul>
+<li>Metropolis分为Byzantium和Constantinople两个子阶段。</li>
+
+<li><p>难度炸弹的回调发生在Byzantium这个子阶段，在EIP中决定，同时把Block reward从5个ETH降为3个ETH。难度是一夜之间陡降，所以要降低挖矿奖励。</p></li>
+
+<li><p>BIP(BitCoin Improvement Proposal)</p></li>
+</ul>
+
+<pre><code class="language-go">func calcDifficultyByzantium(time uint64, parent *types.Header) *big.Int{
+  //algorithm:
+  //diff = (parent_diff + 
+  //			   (parent_diff / 2048 * 
+  //						max((2 if len(parent.uncles) else 1) - //				((timestamp - parent.timestamp) // 9), -99))
+  //					) + 2^(periodCount - 2)
+  
+  // &quot;//&quot;表示向下取整
+  bigTime := new(big.Int).SetUint64(time)
+  bigParentTime := new(big.Int).Set(parent.Time)
+  x := new(big.Int)
+  y := new(big.Int)
+}
+</code></pre>
+
+<p>基础部分的计算—代码段</p>
+
+<p><img src="../../static/img/cal-code-1.png" alt="" /></p>
+
+<p>难度炸弹的计算—代码段</p>
+
+<p><img src="../../static/img/cal-code-2.png" alt="" /></p>
+
+<h4 id="proof-of-stake">Proof of Stake</h4>
+
+<p>TWh = Terawatt hours $10^{12}$</p>
+
+<p>KWh = Kilowatt hours  $10^3$</p>
+
+<p>BTC每年总能耗：69.95TWh；占全球总能耗的0.31%；平均每个交易：1014TWh；</p>
+
+<p>ETH占 0.1%。</p>
+
+<p>Virtual mining(虚拟挖矿)</p>
+
+<p>AltCoin Infanticide(扼杀在摇篮中)</p>
+
+<p>nothing at stake(权益证明可以多链下注。)</p>
+
+<p>以太坊中准备采用的是Casper the Friendly Finality Gadget(FFG)。采用的是PoW与PoS混合共识。</p>
+
+<p>Casper 引入 Validator的角色；职责是推动系统达成共识；提供一定的保证金来获取这个角色。</p>
+
+<p>每挖出100个区块作为一个epoch进行two-phase commit(Prepare Message; Commit Message;要求2/3)。实际运行中则只需要50个区块，就作为一个epoch。验证者可以获得奖励，没有履行相应义务的话，则作出一定的处罚。扣除保证金。任期一过还需要一定的等待期才能获取保证金与奖励。</p>
+
+<p>权益证明不是很成熟，工作量证明已经经过了时间检验。</p>
+
+<hr />
+
+<h1 id="智能合约">智能合约</h1>
+
+<p>很可惜，markdown 不支持solidity语言代码。只能贴图。</p>
+
+<p><img src="../../static/img/contract-1.png" alt="" /></p>
+
+<h5 id="外部账户调用智能合约">外部账户调用智能合约</h5>
+
+<p>创建一个交易，接收地址为需要调用的那个只能合约的地址，data域填写要调用的函数及其参数的编码值。</p>
+
+<p><img src="../../static/img/contract-2.png" alt="调用智能合约" /></p>
+
+<p>一个合约调用另一个合约的函数：直接调用，一旦报错就全部回滚；call调用会放回false值，表示调用失败；delegatecall用法和call相同，但是可以在当前的环境（账户）下进行执行。</p>
+
+<p>以太坊中凡是要接受外部转账的交易，合约都需要标注为payable！</p>
+
+<p>fallback()函数：</p>
+
+<pre><code class="language-solidity">function() public [payable]{
+  ...
+}
+</code></pre>
+
+<ul>
+<li><p>匿名函数，无参数，无返回值；</p></li>
+
+<li><p>在两种情况下会被调用：</p>
+
+<ul>
+<li>直接向一个合约地址转账不加任何data；</li>
+<li>调用的函数不存在</li>
+</ul></li>
+
+<li><p>如果转账金额不是0，同样需要声明payable，否则会抛出异常。</p></li>
+</ul>
+
+<h5 id="创建合约">创建合约</h5>
+
+<p>向0x0地址发起交易，在data域中写入合约代码，智能合约代码写完后需要编译成bytecode，不需要转钱，但是需要给汽油费。</p>
+
+<p>Block header 中的gas limit 是区块中所有交易，消耗的gas fee的上限。限制区块资源。BTC是1M限制区块大小。</p>
+
+<p>以太坊规定，矿工可以在上一个区块的gas limit基础上进行1/1024的大小微调。所以现在的大小，是所有矿工的一个平均值。</p>
+
+<p>Halting problem (停机问题)不可解</p>
+
+<p>NPC问题：哈密尔顿回路问题，N!，把所有可能性枚举一遍。</p>
+
+<p>执行合约中的指令需要收取汽油费(gas fee)，有发起交易人支付。</p>
+
+<p><img src="../../static/img/txdata-struct.png" alt="" /></p>
+
+<p>EVM中不同的指令消耗的汽油费是不一样的。</p>
+
+<h4 id="错误处理">错误处理</h4>
+
+<p>以太坊中事物具有原子性，一旦出现错误，就进行回滚。</p>
+
+<p>可以抛出错误的语句：</p>
+
+<ul>
+<li>assert(bool condition):用于内部语句</li>
+<li>require(bool condition):外部语句：输入，输出等</li>
+<li>revert():终止运行并回滚状态变动。无条件抛出异常。</li>
+</ul>
+
+<h4 id="font-color-red-状态树-交易树-收据树-font"><font color="red">状态树，交易树，收据树</font></h4>
+
+<p>都是全节点在本地维护的数据结构。</p>
+
+<p>先执行完交易中的智能合约才能进行挖矿，再发布区块。</p>
+
+<p>只有进行验证，执行交易中的智能合约，才能更新三棵树的状态，然后才能继续挖矿。</p>
+
+<p>执行错误的交易也要发布到区块链上，这样才能扣除掉汽油费。</p>
+
+<p>Receipt数据结构</p>
+
+<pre><code class="language-go">// receipt represents the results of a transaction
+type Receipt struct {
+  // Consensus fields
+  PostState					[]byte 'json:&quot;root&quot;'
+  Status						uint64 'json:&quot;status&quot;'
+  CumulativeGasUsed	uint64 'json:&quot;CumulativeGasUsed&quot; gencodec:&quot;required&quot;'
+  Bloom							Bloom  'json:&quot;logsBloom&quot; gencodec:&quot;required&quot;'
+  Logs							[]*Log 'json:&quot;logs&quot; gencodec:&quot;required&quot;'
+  
+  // Implementation fields(don't reorder!)
+  TxHash						common.Hash		'json:&quot;transactionHash&quot; gencodec:&quot;required&quot;'
+  ContractAddress		common.Address  'json:&quot;contractAddress&quot;'
+  GasUsed						uint64 'json:&quot;gasUsed&quot; gencodec:&quot;required&quot;'
+}
+</code></pre>
+
+<p>智能合约不支持并行处理,比如说，产生随机数，所以以太坊产生的是伪随机数。</p>
+
+<p>智能合约可以获得的区块信息</p>
+
+<p><img src="../../static/img/block information.png" alt="" /></p>
+
+<p>智能合约可以获得的调用信息</p>
+
+<p><img src="../../static/img/call info.png" alt="" /></p>
+
+<p>地址类型</p>
+
+<p><img src="../../static/img/address type.png" alt="" /></p>
+
+<p>所有的智能合约均可显式地转换成地址类型。</p>
+
+<p>address.transfer(12345)是转入地址，肯能会导致连锁性回滚，send，call则是返回false。call会将你剩余的gas fee全部发送过去。</p>
+
+<p>线下宣传自己的合约DAPP。</p>
+
+<p>code is law.  合约上线就不可修改了。irrevocable trust 信托。</p>
+
+<p>智能合约写的不好的话，可能会将所有的以太币锁住。</p>
+
+<p>第一版：合约自动退回币</p>
+
+<p><img src="../../static/img/sendback.png" alt="" /></p>
+
+<p><font color="red">问题在于</font>：如果有攻击者构建如下的合约账户进行竞拍，将会导致回滚，所有人都拿不到钱。所有的币都会锁在智能合约之中。</p>
+
+<p><img src="../../static/img/rollback.png" alt="" /></p>
+
+<p>因为，hackV1收到转账，应该调用fallback()函数，然后调用失败，抛出异常，transfer()会引起连锁式的回滚。导致所有用户都收不到钱。</p>
+
+<p>第二版：投标者自己取回出价</p>
+
+<p><img src="../../static/img/withdraw.png" alt="" /></p>
+
+<p>重入攻击（Re-entrancy Attack）</p>
+
+<p>1、当合约账户收到ETH但未调用函数时，会立刻执行fallback()函数</p>
+
+<p>2、通过adds.send(), addr.transfer(), addr.call.value()()三种方式付钱都会出发addr里的fallback函数</p>
+
+<p>3、fallback()函数由用户自己编写。</p>
+
+<p>Hack Contract</p>
+
+<p><img src="../../static/img/Re-entrancy Attack.png" alt="" /></p>
+
+<p>其中的fallback函数又将钱取出了一遍。</p>
+
+<p><img src="../../static/img/changecode.png" alt="" /></p>
+
+<p>先清零再转账。2300的汽油费，只够写一个log，不够再执行其他合约。</p>
+
+<hr />
+
+<h1 id="thedao">TheDAO</h1>
+
+<p>Decentralized Autonmous Organization(去中心化的自治组织).  DAO</p>
+
+<p>Decentralized Autonmous Corporation(去中心化的自治公司). DAC</p>
+
+<p>The DAO</p>
+
+<p>通过拆分的方法来取回货币，splitDAO 产生childDAO。</p>
+
+<p>查看splitDAO的代码：</p>
+
+<p><img src="../../static/img/TheDAO.png" alt="" /></p>
+
+<p>应该先讲账户balance清零的。</p>
+
+<p>too big to fail，一旦垮掉，可能会造成极大的恐慌。</p>
+
+<p>锁定黑客账户，设法清退TheDAO基金中的以太币。</p>
+
+<p>与TheDAO相关的交易，都设置成非法交易，不予执行。</p>
+
+<p>产生一个bug，那么是否收取汽油费？</p>
+
+<p>但是，当时没有收取。</p>
+
+<p>所以，软分叉失败，采取硬分叉。</p>
+
+<p>智能合约：将代币退回成以太币。用软件升级的方法，强行重新记账。凡事TheDAO账户上的资金，不管是否同意，强制执行。自动执行转账交易。</p>
+
+<p>成功硬分叉后，分为ETH，ETC(Ethereum classic)</p>
+
+<p>添加chainID进行区分。</p>
+
+<h1 id="反思">反思</h1>
+
+<p>Is smart contract really smart?</p>
+
+<p>NO!</p>
+
+<p>在现实世界，自动合约举例：ATM</p>
+
+<p>Smart Contract is anything but smart.</p>
+
+<p>并不智能。</p>
+
+<p>不可篡改性，是一把双刃剑。比如，发现了漏洞，由于共识的缓慢，并不能及时更新。</p>
+
+<p>Nothing is irrevocable .没什么是不可篡改的。</p>
+
+<p>美国宪法修正案被推翻过：Prohibition ； 第十八修正案；禁酒令。再第21修正案取消了。在美国，不能再路上饮酒。是要被抓的！open container laws。</p>
+
+<h3 id="在语言设计上的反思">在语言设计上的反思</h3>
+
+<p>Is solidity the right programming language?</p>
+
+<p>Formal verification.</p>
+
+<p>Many eyeball fallacy; 开源代码，理论上是安全的。但是，很多人肯能由于种种问题都没有仔细看。（看的懂）。</p>
+
+<h3 id="去中心化的反思">去中心化的反思</h3>
+
+<p>What does decentralization mean?</p>
+
+<p>并不是以太坊开发团队决定的分叉。最后是绝大多数矿工升级软件，支持了硬分叉。</p>
+
+<p>存在分叉的选项恰恰是民主、去中心化的体现。</p>
+
+<h3 id="去中心化-ne-分布式">去中心化 $\ne$ 分布式</h3>
+
+<p>去中心化必定是分布式的系统。</p>
+
+<p>state machine。</p>
+
+<p>应用状态机的场景：</p>
+
+<p>mission critical application</p>
+
+<p>Air traffic control</p>
+
+<p>stock exchange</p>
+
+<p>Space shuttle</p>
+
+<p>智能合约是用来编写控制逻辑的。</p>
+
+<h1 id="美链-beauty-chain">美链 (Beauty Chain)</h1>
+
+<p>IPO(Initial Publication Offering)</p>
+
+<p>ICO(Initial Coin Offering)</p>
+
+<p>美链是一个部署在以太坊上的智能合约，有自己的代币BEC。</p>
+
+<ul>
+<li>没有自己的区块链，代币的发行、转账都是通过调用智能合约中的函数来完成的。</li>
+<li>可以自己定义发行规则，每个账户有多少代币也是保存在智能合约的状态变量里的</li>
+<li>ERC20是以太坊上发行代币的一个标准，规范了所有发行发币的合约应该实现的功能和遵循的接口。（Ethereum Request for Comments）</li>
+<li>美链中有一个叫batchTransfer的函数，它的功能是向多个接收者发送代币，然后把这些代币从调用者的账户上删除。</li>
+</ul>
+
+<p>batchTransfer的实现：</p>
+
+<p><img src="../../static/img/batchTransfer.png" alt="" /></p>
+
+<p>_value过大可能到时溢出，使得amount很小，但是 _value很大。</p>
+
+<p>攻击细节：</p>
+
+<p><img src="../../static/img/attack details.png" alt="" /></p>
+
+<h3 id="预防措施">预防措施：</h3>
+
+<p>SafeMath库</p>
+
+<ul>
+<li>只要通过SafeMath提供的乘法计算amount，就可以很容易检测到溢出。</li>
+</ul>
+
+<pre><code class="language-c">library SafeMath{
+  function mul(uint256 a, uint256 b) internal pure returns (uint256 c){
+    if (a == 0){
+      return 0;
+    }
+    c = a * b;
+    assert(c / a == b)
+    return c;
+  }
+}
+</code></pre>
+
+<h1 id="应用">应用</h1>
+
+<p>保险理赔业务：慢，主要是因为理赔内容需要认为审核，而支付技术本身不是瓶颈。</p>
+
+<p>商品销售业务：有机蔬菜等。区块链技术本身并不防伪，比如：商品被调包，记录的本身就是假的。</p>
+
+<p>成功的商业模式，去中心化与中心化的模式并不矛盾，是可以结合的。</p>
+
+<p>BTC仅仅只是支付方式。</p>
+
+<p>法律上的监管与保护，与技术本身没有关系。</p>
+
+<p>Internet：信息的传输。</p>
+
+<p>但是支付方式，并没有改变。</p>
+
+<p>未来的发展趋势，价值与信息相互融合。</p>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+
+<section class="author">
+  <h4><a href="https://franklin-zf.github.io/MyBlog/">章峰</a></h4>
+  
+  <p>Every man dies, not every man really lives.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">BeiJing, China</span>
+    
+  </div>
+</section>
+
+
+
+
+    
+
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "https:\/\/franklin-zf.github.io\/MyBlog\/2019\/03\/27\/blockchain_note\/";  
+this.page.identifier = "https:\/\/franklin-zf.github.io\/MyBlog\/2019\/03\/27\/blockchain_note\/"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://franklin.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="https://franklin-zf.github.io/MyBlog/2019/03/25/first/">
+          <section class="post">
+              <h2>First</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">I am thinking and living ...</a> All rights reserved - 2018</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://franklin-zf.github.io/MyBlog/js/jquery.js"></script>
+    <script type="text/javascript" src="https://franklin-zf.github.io/MyBlog/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://franklin-zf.github.io/MyBlog/js/index.js"></script>
+    
+</body>
+</html>
+

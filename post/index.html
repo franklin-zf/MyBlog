@@ -121,12 +121,12 @@
         
             
             <li class="nav-opened" role="presentation">
-            	<a href="tags/blockchain">BlockChain</a>
+            	<a href="https://franklin-zf.github.io/MyBlog/">Home</a>
             </li>
         
             
             <li class="nav-opened" role="presentation">
-            	<a href="https://franklin-zf.github.io/MyBlog/">Home</a>
+            	<a href="tags/blockchain">BlockChain</a>
             </li>
         
             
@@ -188,6 +188,56 @@
 </nav>
 
 	</div>
+
+	
+	   <article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="https://franklin-zf.github.io/MyBlog/2019/03/27/blockchain_note/">BlockChain_note</a></h2>
+    </header>
+    <section class="post-excerpt">
+        
+            <p>BTC 数据结构 哈希指针（内存地址，数据hash） 区别：用哈希指针代替了普通指针
+整个区块的所有内容都会被hash，作为下一个区块的前hash值。
+由于merkle tree的存在，所以只需要hash(block header)
+graph LR id[coin base -&gt;A10] --&gt; id1[A -&gt; B5]  FLP impossibility result:
+在异步的系统中，网络传输延迟没有上限。哪怕系统中有一个成员是faulty的，就不能达成共识。
+CAP Theorem
+consistency，avalibility，partition tolerance，三个性质只能满足两个。
+Paxos
+满足Consistency，Avalibility。
+Coinbase transaction: block reward;50 BTC;After 21w blocks, 25BTC;After 21w blocks,12.5BTC
+BTC共识要取得的共识是什么？账本的内容！ Hash rate投票权重！
+digital gold —&gt;BTC
+UTXO(unspent transaction output) 维护的是，账本中未被花费的输出集合。（交易的hash值，交易中的第几输出）。
+graph LR id[A] --&gt;id1[B 5BTC] id[A] --&gt;id2[C 3BTC]  B化掉了5BTC,在UTXO中就不会存有B 5BTC的地址，hash pointer。
+Total inputs == Total outputs + 交易费
+Transaction-based ledger <a class="read-more" href="https://franklin-zf.github.io/MyBlog/2019/03/27/blockchain_note/">&raquo;</a></p>
+        
+    </section>
+    <footer class="post-meta">
+        
+
+        
+            
+            
+
+            
+            
+            
+            章峰
+                 
+        
+
+        on
+            
+                <a href="https://franklin-zf.github.io/MyBlog//tags/blockchain/">#BlockChain</a>,
+            
+        
+        <time class="post-date" datetime="2019-03-27T09:14:37&#43;08:00">
+            27 Mar 2019
+        </time>
+    </footer>
+</article>
 
 	
 	   <article class="post post">

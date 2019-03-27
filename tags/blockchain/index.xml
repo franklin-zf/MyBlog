@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>I am thinking and living ...</title>
-    <link>https://franklin-zf.github.io/MyBlog/</link>
-    <description>Recent content on I am thinking and living ...</description>
+    <title>Blockchain on I am thinking and living ...</title>
+    <link>https://franklin-zf.github.io/MyBlog/tags/blockchain/</link>
+    <description>Recent content in Blockchain on I am thinking and living ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2018</copyright>
     <lastBuildDate>Wed, 27 Mar 2019 09:14:37 +0800</lastBuildDate>
     
-	<atom:link href="https://franklin-zf.github.io/MyBlog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://franklin-zf.github.io/MyBlog/tags/blockchain/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -34,15 +34,6 @@ UTXO(unspent transaction output) 维护的是，账本中未被花费的输出�
 graph LR id[A] --&amp;gt;id1[B 5BTC] id[A] --&amp;gt;id2[C 3BTC]  B化掉了5BTC,在UTXO中就不会存有B 5BTC的地址，hash pointer。
 Total inputs == Total outputs + 交易费
 Transaction-based ledger</description>
-    </item>
-    
-    <item>
-      <title>First</title>
-      <link>https://franklin-zf.github.io/MyBlog/2019/03/25/first/</link>
-      <pubDate>Mon, 25 Mar 2019 15:41:42 +0800</pubDate>
-      
-      <guid>https://franklin-zf.github.io/MyBlog/2019/03/25/first/</guid>
-      <description></description>
     </item>
     
   </channel>

@@ -3,8 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://franklin-zf.github.io/MyBlog/2019/03/27/blockchain_note/</loc>
+    <lastmod>2019-03-27T09:14:37+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://franklin-zf.github.io/MyBlog/2019/03/25/first/</loc>
     <lastmod>2019-03-25T15:41:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://franklin-zf.github.io/MyBlog/tags/blockchain/</loc>
+    <lastmod>2019-03-27T09:14:37+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -14,18 +25,19 @@
   
   <url>
     <loc>https://franklin-zf.github.io/MyBlog/</loc>
-    <lastmod>2019-03-25T15:41:42+08:00</lastmod>
+    <lastmod>2019-03-27T09:14:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://franklin-zf.github.io/MyBlog/post/</loc>
-    <lastmod>2019-03-25T15:41:42+08:00</lastmod>
+    <lastmod>2019-03-27T09:14:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://franklin-zf.github.io/MyBlog/tags/</loc>
+    <lastmod>2019-03-27T09:14:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   
